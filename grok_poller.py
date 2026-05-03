@@ -1,52 +1,44 @@
 import os
 import time
 from datetime import datetime
-import supabase
+from supabase import create_client, Client
 
-# Get env vars exactly as Railway provides them
-SUPABASE_URL = os.getenv("SUPABASE_URL") or "https://pebhikfbpgntedvbxqph.supabase.co"
-SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY") or os.getenv("SUPABASE_KEY")
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+CONTEXT_ID = "hudsonseed-main"
 
-print(f"[GROK] Connecting to Supabase...")
-print(f"[GROK] URL: {SUPABASE_URL}")
-print(f"[GROK] Key: {'***' + SUPABASE_KEY[-10:] if SUPABASE_KEY else 'MISSING'}")
-
-if not SUPABASE_KEY:
-    print("[GROK] FATAL: No Supabase key found")
+if not SUPABASE_URL or not SUPABASE_KEY:
+    print("ERROR: Missing SUPABASE_URL or KEY env vars")
     exit(1)
 
-supa = supabase.create_client(SUPABASE_URL, SUPABASE_KEY)
+supa: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-print("[GROK] POLLER_STARTED - Autonomous mode")
-print(f"[GROK] Polling interval: 30 seconds")
+print(f"GROK_POLLER_STARTED at {datetime.utcnow().isoformat()} - Using pooler")
 
-last_message_id = 0
+last_id = 0
 
 while True:
     try:
-        # Poll for new CLAUDE commands
-        response = supa.table("ai_messages").select("*").eq("sender", "CLAUDE").order("id", desc=True).limit(10).execute()
+        # Get new CLAUDE messages since last
+        resp = supa.table("ai_messages").select("*").eq("sender", "CLAUDE").gte("id", last_id).order("id").execute()
+        messages = resp.data or []
         
-        if response.data:
-            for msg in response.data:
-                if msg['id'] > last_message_id:
-                    last_message_id = msg['id']
-                    print(f"[GROK] NEW COMMAND: {msg['message']}")
-                    
-                    # Write response
-                    reply = f"GROK_RECEIVED: {msg['message']} at {datetime.utcnow().isoformat()}"
-                    supa.table("ai_messages").insert({
-                        "sender": "GROK",
-                        "message": reply,
-                        "context_id": "hudsonseed-grok-poller-v1",
-                        "created_at": datetime.utcnow().isoformat()
-                    }).execute()
-                    print(f"[GROK] RESPONSE SENT")
-        else:
-            print(f"[GROK] No new commands. Heartbeat at {datetime.utcnow().isoformat()}")
+        for msg in messages:
+            print(f"CLAUDE: {msg.get('message')}")
+            reply = f"GROK_ONLINE: {datetime.utcnow().isoformat()}. Message received: {msg.get('message')[:200]}... Ready for commands."
+            
+            supa.table("ai_messages").insert({
+                "sender": "GROK",
+                "message": reply,
+                "context_id": CONTEXT_ID
+            }).execute()
+            
+            last_id = msg.get("id", last_id) + 1
+            print("✓ Replied")
         
         time.sleep(30)
         
     except Exception as e:
-        print(f"[GROK] ERROR: {e}")
+        print(f"CRASH/BLOCK: {type(e).__name__} - {e}")
+        print("Check: Pooler URL + RLS + service_role key")
         time.sleep(30)
