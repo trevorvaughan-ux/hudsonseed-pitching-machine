@@ -1,0 +1,50 @@
+{
+  "run_date": "2026-05-04T02:42:07.179049",
+  "sent": 11,
+  "results": [
+    {
+      "school": "Hoboken High School",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Hoboken Middle School",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Brandt Elementary",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Connors Elementary",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Wallace Elementary",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Elementary #1",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Elementary #2",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Solomon Schechter",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Christ the King Academy",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Hoboken Charter School",
+      "status": "SIMULATED"
+    },
+    {
+      "school": "Hudson County Schools of Technology",
+      "status": "SIMULATED"
+    }
+  ]
+}

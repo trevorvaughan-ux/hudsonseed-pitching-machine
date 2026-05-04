@@ -1,66 +1,66 @@
 {
-  "run_date": "2026-05-04T02:22:58.944834",
+  "run_date": "2026-05-04T02:24:38.408435",
   "emails_sent": 10,
   "results": [
     {
       "school": "Hoboken High School",
       "email": "robin.piccapietra@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944560"
+      "sent_at": "2026-05-04T02:24:38.408257"
     },
     {
       "school": "Hoboken Middle School",
       "email": "hmiddle@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944590"
+      "sent_at": "2026-05-04T02:24:38.408279"
     },
     {
       "school": "Brandt Elementary",
       "email": "brandt@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944606"
+      "sent_at": "2026-05-04T02:24:38.408294"
     },
     {
       "school": "Connors Elementary",
       "email": "connors@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944619"
+      "sent_at": "2026-05-04T02:24:38.408308"
     },
     {
       "school": "Wallace Elementary",
       "email": "wallace@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944633"
+      "sent_at": "2026-05-04T02:24:38.408321"
     },
     {
       "school": "Elementary #1",
       "email": "elem1@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944646"
+      "sent_at": "2026-05-04T02:24:38.408334"
     },
     {
       "school": "Elementary #2",
       "email": "elem2@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944659"
+      "sent_at": "2026-05-04T02:24:38.408347"
     },
     {
       "school": "Solomon Schechter",
       "email": "schechter@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944672"
+      "sent_at": "2026-05-04T02:24:38.408360"
     },
     {
       "school": "Christ the King Academy",
       "email": "ctk@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944686"
+      "sent_at": "2026-05-04T02:24:38.408373"
     },
     {
       "school": "Hoboken Charter School",
       "email": "hcs@hoboken.k12.nj.us",
       "status": "SIMULATED",
-      "sent_at": "2026-05-04T02:22:58.944731"
+      "sent_at": "2026-05-04T02:24:38.408386"
     }
   ]
 }

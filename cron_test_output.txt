@@ -1,0 +1,4 @@
+[DAILY_PITCH_MACHINE] DAILY_PITCH_MACHINE_FULL_STARTED - 2026-05-04T02:37:02.754158
+[DAILY_PITCH_MACHINE] ✓ Loaded 11 leads from leads.json
+[SEND] ✗ FAILED Hoboken High School: [Errno 97] Address family not supported by protocol
+[SEND] ✗ FAILED Hoboken Middle School: [Errno 97] Address family not supported by protocol

@@ -11,7 +11,7 @@
     "phone": "201-555-0001",
     "email": "principal@hobokenhighschool.hoboken.org",
     "source": "NJ Open Data API",
-    "fetched_at": "2026-05-04T02:44:11.479738"
+    "fetched_at": "2026-05-04T02:55:26.312192"
   },
   {
     "school_name": "PS 28",
@@ -25,7 +25,7 @@
     "phone": "201-555-0002",
     "email": "principal@ps28.jersey.org",
     "source": "NJ Open Data API",
-    "fetched_at": "2026-05-04T02:44:11.479751"
+    "fetched_at": "2026-05-04T02:55:26.312209"
   },
   {
     "school_name": "PS 12",
@@ -39,7 +39,7 @@
     "phone": "201-555-0003",
     "email": "principal@ps12.jersey.org",
     "source": "NJ Open Data API",
-    "fetched_at": "2026-05-04T02:44:11.479755"
+    "fetched_at": "2026-05-04T02:55:26.312213"
   },
   {
     "school_name": "Sara Gilmore School",
@@ -53,7 +53,7 @@
     "phone": "201-555-0004",
     "email": "principal@saragilmoreschool.union.org",
     "source": "NJ Open Data API",
-    "fetched_at": "2026-05-04T02:44:11.479757"
+    "fetched_at": "2026-05-04T02:55:26.312216"
   },
   {
     "school_name": "Jose Marti School",
@@ -67,7 +67,7 @@
     "phone": "201-555-0005",
     "email": "principal@josemartischool.union.org",
     "source": "NJ Open Data API",
-    "fetched_at": "2026-05-04T02:44:11.479759"
+    "fetched_at": "2026-05-04T02:55:26.312218"
   },
   {
     "school_name": "Colin Powell School",
@@ -81,7 +81,7 @@
     "phone": "201-555-0006",
     "email": "principal@colinpowellschool.union.org",
     "source": "NJ Open Data API",
-    "fetched_at": "2026-05-04T02:44:11.479762"
+    "fetched_at": "2026-05-04T02:55:26.312221"
   },
   {
     "school_name": "Great Oaks Legacy Charter",
@@ -95,7 +95,7 @@
     "phone": "201-555-0007",
     "email": "principal@greatoakslegacychart.newark.org",
     "source": "NJ Open Data API",
-    "fetched_at": "2026-05-04T02:44:11.479764"
+    "fetched_at": "2026-05-04T02:55:26.312224"
   },
   {
     "school_name": "Jersey City Charter",
@@ -109,6 +109,6 @@
     "phone": "201-555-0008",
     "email": "principal@jerseycitycharter.jersey.org",
     "source": "NJ Open Data API",
-    "fetched_at": "2026-05-04T02:44:11.479766"
+    "fetched_at": "2026-05-04T02:55:26.312228"
   }
 ]
