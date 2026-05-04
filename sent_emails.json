@@ -1,0 +1,47 @@
+[
+  {
+    "school": "Hoboken High School",
+    "principal": "Robin Piccapietra",
+    "email": "robin.piccapietra@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Hoboken High School Students",
+    "body": "\nDear Robin Piccapietra,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm...",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:08:43.909311"
+  },
+  {
+    "school": "Hoboken Middle School",
+    "principal": "TBD",
+    "email": "hmiddle@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Hoboken Middle School Students",
+    "body": "\nDear TBD,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm, and emotiona...",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:08:43.909342"
+  },
+  {
+    "school": "Brandt Elementary",
+    "principal": "TBD",
+    "email": "brandt@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Brandt Elementary Students",
+    "body": "\nDear TBD,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm, and emotiona...",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:08:43.909367"
+  },
+  {
+    "school": "Connors Elementary",
+    "principal": "TBD",
+    "email": "connors@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Connors Elementary Students",
+    "body": "\nDear TBD,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm, and emotiona...",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:08:43.909389"
+  },
+  {
+    "school": "Wallace Elementary",
+    "principal": "TBD",
+    "email": "wallace@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Wallace Elementary Students",
+    "body": "\nDear TBD,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm, and emotiona...",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:08:43.909412"
+  }
+]
