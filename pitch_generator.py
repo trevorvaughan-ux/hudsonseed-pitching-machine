@@ -32,7 +32,7 @@ Dear {principal},
 
 HudsonSeed brings proven kids yoga to Hoboken schools. 
 
-Weekly 30-min sessions build focus, calm, and emotional regulation.
+Build focus, calm, and emotional regulation across your student body.
 
 First 4 weeks free for 2026 pilot.
 
