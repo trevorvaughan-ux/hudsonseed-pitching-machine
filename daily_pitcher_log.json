@@ -1,0 +1,66 @@
+{
+  "run_date": "2026-05-04T02:22:58.944834",
+  "emails_sent": 10,
+  "results": [
+    {
+      "school": "Hoboken High School",
+      "email": "robin.piccapietra@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944560"
+    },
+    {
+      "school": "Hoboken Middle School",
+      "email": "hmiddle@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944590"
+    },
+    {
+      "school": "Brandt Elementary",
+      "email": "brandt@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944606"
+    },
+    {
+      "school": "Connors Elementary",
+      "email": "connors@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944619"
+    },
+    {
+      "school": "Wallace Elementary",
+      "email": "wallace@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944633"
+    },
+    {
+      "school": "Elementary #1",
+      "email": "elem1@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944646"
+    },
+    {
+      "school": "Elementary #2",
+      "email": "elem2@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944659"
+    },
+    {
+      "school": "Solomon Schechter",
+      "email": "schechter@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944672"
+    },
+    {
+      "school": "Christ the King Academy",
+      "email": "ctk@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944686"
+    },
+    {
+      "school": "Hoboken Charter School",
+      "email": "hcs@hoboken.k12.nj.us",
+      "status": "SIMULATED",
+      "sent_at": "2026-05-04T02:22:58.944731"
+    }
+  ]
+}
