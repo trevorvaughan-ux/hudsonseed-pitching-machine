@@ -1,1 +1,1 @@
-web: python poller.py
+web: python grok_standalone.py
