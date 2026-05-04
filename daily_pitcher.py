@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-DAILY_PITCH_MACHINE_CRON — Lightweight daily pitcher for Railway cron.
+DAILY_PITCH_MACHINE_CRON — Production email sender with real Gmail SMTP.
 Runs daily at 9 AM UTC: generates pitches from leads.json, sends to principals.
 Logs results for tracking.
 
@@ -15,14 +15,40 @@ from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 import os
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# EMAIL SENDER FUNCTION (Production)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def send_pitch(to_email, subject, body):
+    """Send pitch email via Gmail SMTP with anti-spam headers."""
+    EMAIL = "trevorvaughan@hudsonseed.com"
+    APP_PASSWORD = "cdpw jobq ujdz oyag"  # Gmail app password
+    
+    msg = MIMEMultipart()
+    msg['From'] = EMAIL
+    msg['To'] = to_email
+    msg['Subject'] = subject
+    msg['Reply-To'] = EMAIL
+    msg['User-Agent'] = "HudsonSeed Pitcher"
+    msg['X-Priority'] = "3"
+    msg.attach(MIMEText(body, 'plain'))
+    
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login(EMAIL, APP_PASSWORD)
+    server.send_message(msg)
+    server.quit()
+    print(f"[SEND_PITCH] ✓ Sent to {to_email}")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# MAIN CRON LOOP
+# ═══════════════════════════════════════════════════════════════════════════════
+
 print("[DAILY_PITCHER] DAILY_PITCH_MACHINE_CRON -", datetime.now().isoformat())
 
 # Config
-GMAIL_USER = os.getenv("GMAIL_USER", "trevorvaughan@hudsonseed.com")
-GMAIL_PASSWORD = os.getenv("GMAIL_PASSWORD", "cdpw jobq ujdz oyag")
 SIMULATE_ONLY = os.getenv("SIMULATE_ONLY", "True").lower() == "true"
 SEND_DELAY = 2
-REPLY_TO = "trevorvaughan@hudsonseed.com"
 UNSUBSCRIBE = "\n\n---\nReply STOP to opt out. HudsonSeed | hudsonseed.com"
 
 # Load leads
@@ -74,22 +100,7 @@ www.hudsonseed.com
         status = "SIMULATED"
     else:
         try:
-            msg = MIMEMultipart()
-            msg["From"] = GMAIL_USER
-            msg["To"] = email
-            msg["Subject"] = subject
-            msg["Reply-To"] = REPLY_TO
-            msg["User-Agent"] = "HudsonSeed Pitcher"
-            msg["X-Priority"] = "3"
-            msg.attach(MIMEText(body, "plain"))
-            
-            server = smtplib.SMTP("smtp.gmail.com", 587)
-            server.starttls()
-            server.login(GMAIL_USER, GMAIL_PASSWORD)
-            server.send_message(msg)
-            server.quit()
-            
-            print(f"[DAILY_PITCHER] ✓ Sent to {school}")
+            send_pitch(email, subject, body)
             status = "SENT"
             time.sleep(SEND_DELAY)
         except Exception as e:
