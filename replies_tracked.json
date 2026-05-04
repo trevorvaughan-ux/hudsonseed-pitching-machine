@@ -1,0 +1,40 @@
+{
+  "tracked_date": "2026-05-04T02:51:23.350611",
+  "total_replies": 3,
+  "positive": 3,
+  "negative": 0,
+  "redirect": 0,
+  "neutral": 0,
+  "replies": [
+    {
+      "school": "Hoboken High School",
+      "from_email": "principal@hobokenhighschool.hoboken.org",
+      "subject": "Re: Yoga + Mindfulness Pilot for Hoboken High School Students",
+      "body": "Hi Trevor, Thanks for reaching out! We're very interested in the program. Can you schedule a demo for next week?",
+      "sentiment": "POSITIVE",
+      "action": "SCHEDULE_DEMO",
+      "received_at": "2026-05-04T02:51:23.350288",
+      "tracked_at": "2026-05-04T02:51:23.350397"
+    },
+    {
+      "school": "PS 28",
+      "from_email": "principal@ps28.jersey.org",
+      "subject": "Re: Yoga + Mindfulness Pilot for PS 28 Students",
+      "body": "Not interested at this time. We have other priorities.",
+      "sentiment": "POSITIVE",
+      "action": "SCHEDULE_DEMO",
+      "received_at": "2026-05-04T02:51:23.350301",
+      "tracked_at": "2026-05-04T02:51:23.350441"
+    },
+    {
+      "school": "Sara Gilmore School",
+      "from_email": "principal@sara.gilmore.uc.org",
+      "subject": "Re: Yoga + Mindfulness Pilot for Sara Gilmore School Students",
+      "body": "Please send more information about pricing and curriculum.",
+      "sentiment": "POSITIVE",
+      "action": "SCHEDULE_DEMO",
+      "received_at": "2026-05-04T02:51:23.350304",
+      "tracked_at": "2026-05-04T02:51:23.350483"
+    }
+  ]
+}
