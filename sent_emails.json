@@ -4,44 +4,87 @@
     "principal": "Robin Piccapietra",
     "email": "robin.piccapietra@hoboken.k12.nj.us",
     "subject": "Yoga + Mindfulness Program for Hoboken High School Students",
-    "body": "\nDear Robin Piccapietra,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm...",
     "status": "SIMULATED",
-    "sent_at": "2026-05-04T02:13:57.278769"
+    "sent_at": "2026-05-04T02:16:07.928212"
   },
   {
     "school": "Hoboken Middle School",
     "principal": "TBD",
     "email": "hmiddle@hoboken.k12.nj.us",
     "subject": "Yoga + Mindfulness Program for Hoboken Middle School Students",
-    "body": "\nDear TBD,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm, and emotiona...",
     "status": "SIMULATED",
-    "sent_at": "2026-05-04T02:13:57.278800"
+    "sent_at": "2026-05-04T02:16:07.928242"
   },
   {
     "school": "Brandt Elementary",
     "principal": "TBD",
     "email": "brandt@hoboken.k12.nj.us",
     "subject": "Yoga + Mindfulness Program for Brandt Elementary Students",
-    "body": "\nDear TBD,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm, and emotiona...",
     "status": "SIMULATED",
-    "sent_at": "2026-05-04T02:13:57.278826"
+    "sent_at": "2026-05-04T02:16:07.928267"
   },
   {
     "school": "Connors Elementary",
     "principal": "TBD",
     "email": "connors@hoboken.k12.nj.us",
     "subject": "Yoga + Mindfulness Program for Connors Elementary Students",
-    "body": "\nDear TBD,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm, and emotiona...",
     "status": "SIMULATED",
-    "sent_at": "2026-05-04T02:13:57.278964"
+    "sent_at": "2026-05-04T02:16:07.928290"
   },
   {
     "school": "Wallace Elementary",
     "principal": "TBD",
     "email": "wallace@hoboken.k12.nj.us",
     "subject": "Yoga + Mindfulness Program for Wallace Elementary Students",
-    "body": "\nDear TBD,\n\nHudsonSeed brings proven kids yoga to Hoboken schools. \n\nBuild focus, calm, and emotiona...",
     "status": "SIMULATED",
-    "sent_at": "2026-05-04T02:13:57.278996"
+    "sent_at": "2026-05-04T02:16:07.928312"
+  },
+  {
+    "school": "Elementary #1",
+    "principal": "TBD",
+    "email": "elem1@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Elementary #1 Students",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:16:07.928335"
+  },
+  {
+    "school": "Elementary #2",
+    "principal": "TBD",
+    "email": "elem2@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Elementary #2 Students",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:16:07.928427"
+  },
+  {
+    "school": "Solomon Schechter",
+    "principal": "TBD",
+    "email": "schechter@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Solomon Schechter Students",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:16:07.928477"
+  },
+  {
+    "school": "Christ the King Academy",
+    "principal": "TBD",
+    "email": "ctk@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Christ the King Academy Students",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:16:07.928504"
+  },
+  {
+    "school": "Hoboken Charter School",
+    "principal": "TBD",
+    "email": "hcs@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Hoboken Charter School Students",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:16:07.928529"
+  },
+  {
+    "school": "Hudson County Schools of Technology",
+    "principal": "TBD",
+    "email": "hcst@hoboken.k12.nj.us",
+    "subject": "Yoga + Mindfulness Program for Hudson County Schools of Technology Students",
+    "status": "SIMULATED",
+    "sent_at": "2026-05-04T02:16:07.928553"
   }
 ]
