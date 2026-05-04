@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-05-04T02:55:26.373499",
+  "summary": {
+    "total_checks": 9,
+    "passed": 9,
+    "failed": 0,
+    "health_score": "100%"
+  },
+  "details": {
+    "file:school_finder.py": {
+      "ok": true,
+      "msg": "OK (5727 bytes)"
+    },
+    "file:daily_pitch_machine.py": {
+      "ok": true,
+      "msg": "OK (5549 bytes)"
+    },
+    "file:reply_tracker.py": {
+      "ok": true,
+      "msg": "OK (7558 bytes)"
+    },
+    "file:orchestrator.py": {
+      "ok": true,
+      "msg": "OK (6456 bytes)"
+    },
+    "file:leads.json": {
+      "ok": true,
+      "msg": "OK (3059 bytes)"
+    },
+    "json:leads.json": {
+      "ok": true,
+      "msg": "Valid JSON"
+    },
+    "exec:school_finder.py": {
+      "ok": true,
+      "msg": "Success (exit code 0)"
+    },
+    "exec:reply_tracker.py": {
+      "ok": true,
+      "msg": "Success (exit code 0)"
+    },
+    "exec:orchestrator.py": {
+      "ok": true,
+      "msg": "Skipped"
+    }
+  },
+  "status": "HEALTHY"
+}
