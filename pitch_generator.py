@@ -38,8 +38,13 @@ First 4 weeks free for 2026 pilot.
 
 Reply or call 862-371-4966 to schedule demo.
 
-Mr. Trevor
-HudsonSeed"""
+---
+
+Trevor Vaughan
+Founder & CEO
+HudsonSeed
+www.hudsonseed.com
+862-371-4966"""
     
     pitch_record = {
         "school": school_name,
