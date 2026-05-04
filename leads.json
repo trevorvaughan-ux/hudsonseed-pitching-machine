@@ -1,57 +1,46 @@
 [
-  {
-    "school_name": "Hoboken High School",
-    "principal": "Robin Piccapietra",
-    "email": "robin.piccapietra@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Hoboken Middle School",
-    "principal": "TBD",
-    "email": "hmiddle@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Brandt Elementary",
-    "principal": "TBD",
-    "email": "brandt@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Connors Elementary",
-    "principal": "TBD",
-    "email": "connors@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Wallace Elementary",
-    "principal": "TBD",
-    "email": "wallace@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Elementary #1",
-    "principal": "TBD",
-    "email": "elem1@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Elementary #2",
-    "principal": "TBD",
-    "email": "elem2@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Solomon Schechter",
-    "principal": "TBD",
-    "email": "schechter@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Christ the King Academy",
-    "principal": "TBD",
-    "email": "ctk@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Hoboken Charter School",
-    "principal": "TBD",
-    "email": "hcs@hoboken.k12.nj.us"
-  },
-  {
-    "school_name": "Hudson County Schools of Technology",
-    "principal": "TBD",
-    "email": "hcst@hoboken.k12.nj.us"
-  }
+  {"school_name": "Hoboken High School", "principal": "Robin Piccapietra", "email": "robin.piccapietra@hoboken.k12.nj.us"},
+  {"school_name": "Hoboken Middle School", "principal": "TBD", "email": "hmiddle@hoboken.k12.nj.us"},
+  {"school_name": "Brandt Elementary", "principal": "TBD", "email": "brandt@hoboken.k12.nj.us"},
+  {"school_name": "Connors Elementary", "principal": "TBD", "email": "connors@hoboken.k12.nj.us"},
+  {"school_name": "Wallace Elementary", "principal": "TBD", "email": "wallace@hoboken.k12.nj.us"},
+  {"school_name": "Elementary #1", "principal": "TBD", "email": "elem1@hoboken.k12.nj.us"},
+  {"school_name": "Elementary #2", "principal": "TBD", "email": "elem2@hoboken.k12.nj.us"},
+  {"school_name": "Solomon Schechter", "principal": "TBD", "email": "schechter@hoboken.k12.nj.us"},
+  {"school_name": "Christ the King Academy", "principal": "TBD", "email": "ctk@hoboken.k12.nj.us"},
+  {"school_name": "Hoboken Charter School", "principal": "TBD", "email": "hcs@hoboken.k12.nj.us"},
+  {"school_name": "Hudson County Schools of Technology", "principal": "TBD", "email": "hcst@hoboken.k12.nj.us"},
+  {"school_name": "PS 28", "principal": "TBD", "email": "ps28@jcboe.org"},
+  {"school_name": "PS 12", "principal": "TBD", "email": "ps12@jcboe.org"},
+  {"school_name": "PS 5", "principal": "TBD", "email": "ps5@jcboe.org"},
+  {"school_name": "PS 19", "principal": "TBD", "email": "ps19@jcboe.org"},
+  {"school_name": "PS 15", "principal": "TBD", "email": "ps15@jcboe.org"},
+  {"school_name": "PS 36", "principal": "TBD", "email": "ps36@jcboe.org"},
+  {"school_name": "PS 22", "principal": "TBD", "email": "ps22@jcboe.org"},
+  {"school_name": "PS 14", "principal": "TBD", "email": "ps14@jcboe.org"},
+  {"school_name": "PS 8", "principal": "TBD", "email": "ps8@jcboe.org"},
+  {"school_name": "PS 2", "principal": "TBD", "email": "ps2@jcboe.org"},
+  {"school_name": "PS 3", "principal": "TBD", "email": "ps3@jcboe.org"},
+  {"school_name": "PS 7", "principal": "TBD", "email": "ps7@jcboe.org"},
+  {"school_name": "PS 9", "principal": "TBD", "email": "ps9@jcboe.org"},
+  {"school_name": "PS 11", "principal": "TBD", "email": "ps11@jcboe.org"},
+  {"school_name": "Sara Gilmore School", "principal": "TBD", "email": "sara.gilmore@uc.k12.nj.us"},
+  {"school_name": "Jose Marti School", "principal": "TBD", "email": "jose.marti@uc.k12.nj.us"},
+  {"school_name": "Colin Powell School", "principal": "TBD", "email": "colin.powell@uc.k12.nj.us"},
+  {"school_name": "Union City High School", "principal": "TBD", "email": "uchs@uc.k12.nj.us"},
+  {"school_name": "Union City Middle School", "principal": "TBD", "email": "ucms@uc.k12.nj.us"},
+  {"school_name": "UC Elementary #1", "principal": "TBD", "email": "ucel1@uc.k12.nj.us"},
+  {"school_name": "UC Elementary #2", "principal": "TBD", "email": "ucel2@uc.k12.nj.us"},
+  {"school_name": "UC Elementary #3", "principal": "TBD", "email": "ucel3@uc.k12.nj.us"},
+  {"school_name": "UC Elementary #4", "principal": "TBD", "email": "ucel4@uc.k12.nj.us"},
+  {"school_name": "UC Elementary #5", "principal": "TBD", "email": "ucel5@uc.k12.nj.us"},
+  {"school_name": "Brunswick School", "principal": "TBD", "email": "brunswick@jcboe.org"},
+  {"school_name": "Waldo School", "principal": "TBD", "email": "waldo@jcboe.org"},
+  {"school_name": "Tessa School", "principal": "TBD", "email": "tessa@hoboken.k12.nj.us"},
+  {"school_name": "Step by Step School", "principal": "TBD", "email": "stepbystep@hoboken.k12.nj.us"},
+  {"school_name": "Bright Horizons JC", "principal": "TBD", "email": "brighthorizons@jcboe.org"},
+  {"school_name": "Bright Horizons UC", "principal": "TBD", "email": "brighthorizonsuc@uc.k12.nj.us"},
+  {"school_name": "Great Oaks Legacy Charter", "principal": "Amnah Johnson", "email": "amnaboukamar-johnson@greatoakslegacy.org"},
+  {"school_name": "Jersey City Charter", "principal": "TBD", "email": "jccharter@jcboe.org"},
+  {"school_name": "Weehawken Elementary", "principal": "TBD", "email": "elem@weehawken.k12.nj.us"}
 ]
