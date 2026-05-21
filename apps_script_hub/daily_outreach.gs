@@ -33,7 +33,10 @@ function getSupabaseKey() {
   return key;
 }
 
-// ============ SUPABASE HELPERS ============
+// ============ SUPABASE HELPERS (with retry wrapper per Grok review) ============
+const RETRY_MAX_ATTEMPTS = 3;
+const RETRY_BASE_DELAY_MS = 1000;  // exponential: 1s, 2s, 4s
+
 function supabaseRequest(method, path, payload) {
   const key = getSupabaseKey();
   const options = {
@@ -50,13 +53,42 @@ function supabaseRequest(method, path, payload) {
     options.payload = JSON.stringify(payload);
   }
   const url = SUPABASE_URL + '/rest/v1/' + path;
-  const response = UrlFetchApp.fetch(url, options);
-  const code = response.getResponseCode();
-  if (code < 200 || code >= 300) {
-    throw new Error('Supabase ' + method + ' ' + path + ' failed: ' + code + ' ' + response.getContentText());
+
+  let lastError = null;
+  for (let attempt = 1; attempt <= RETRY_MAX_ATTEMPTS; attempt++) {
+    try {
+      const response = UrlFetchApp.fetch(url, options);
+      const code = response.getResponseCode();
+
+      // Success
+      if (code >= 200 && code < 300) {
+        const text = response.getContentText();
+        return text ? JSON.parse(text) : null;
+      }
+
+      // 4xx (except 429) = client error, don't retry — fail fast
+      if (code >= 400 && code < 500 && code !== 429) {
+        throw new Error('Supabase ' + method + ' ' + path + ' [' + code + '] ' + response.getContentText());
+      }
+
+      // 5xx or 429 = retryable
+      lastError = new Error('Supabase ' + method + ' [' + code + '] attempt ' + attempt + '/' + RETRY_MAX_ATTEMPTS);
+      Logger.log('⚠️ ' + lastError.message + ' — retrying...');
+
+    } catch (fetchErr) {
+      // Network timeout, DNS failure, etc — retryable
+      lastError = fetchErr;
+      Logger.log('⚠️ Supabase fetch threw on attempt ' + attempt + ': ' + fetchErr.toString());
+    }
+
+    // Backoff before next attempt (unless this was the last one)
+    if (attempt < RETRY_MAX_ATTEMPTS) {
+      Utilities.sleep(RETRY_BASE_DELAY_MS * Math.pow(2, attempt - 1));
+    }
   }
-  const text = response.getContentText();
-  return text ? JSON.parse(text) : null;
+
+  // All attempts exhausted
+  throw new Error('Supabase ' + method + ' ' + path + ' failed after ' + RETRY_MAX_ATTEMPTS + ' attempts: ' + lastError.toString());
 }
 
 // ============ KILL SWITCH ============
@@ -315,6 +347,12 @@ function runDailyOutreach() {
   }
 
   const summary = 'Drafted ' + created + ' (' + (IS_DRY_RUN ? 'DRY RUN' : 'LIVE') + '), ' + failed + ' failed';
+
+  // GROK GAP #3: explicit dry-run preview summary
+  if (IS_DRY_RUN) {
+    Logger.log('🧪 DRY RUN COMPLETE — ' + processed.length + ' schools previewed, ZERO drafts created in Gmail');
+    Logger.log('🧪 To go live: change IS_DRY_RUN to false at the top of the script');
+  }
   Logger.log('========================================');
   Logger.log('[DONE] ' + summary);
   Logger.log('========================================');
