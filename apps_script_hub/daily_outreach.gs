@@ -1,34 +1,30 @@
 /**
- * HudsonSeed Mil Hub — Daily Outreach
- * ====================================
- * Pulls next 7 pending JC schools from Supabase
- * Creates personalized Gmail drafts (does NOT send)
- * Logs every run to Supabase outreach_runs table
+ * HudsonSeed COURIER — Daily Outreach (BULLETPROOF v2)
+ * =====================================================
+ * Pulls pending JC schools from Supabase, drafts Gmail emails.
  *
- * Schedule: Tue/Wed/Thu 10:00 AM ET (via Apps Script time trigger)
- * Owner: Trevor Vaughan / trevorvaughan@hudsonseed.com
- * Built: May 20, 2026 by Claude
+ * GUARDRAILS BUILT IN:
+ *   1. Strict deduplication lock (draft_status check)
+ *   2. Batched execution governor (BATCH_LIMIT)
+ *   3. Deep try/catch error logging with row-level FAILED status
+ *   4. Programmatic trigger installer (setupDailyTrigger)
+ *   5. Dry run sandbox flag (IS_DRY_RUN)
+ *   6. Autonomous mode kill-switch (system_config table)
  *
- * SETUP CHECKLIST (one-time):
- * 1. Paste this into script.google.com → New Project → name it "HudsonSeed Mil Hub"
- * 2. Project Settings → Script Properties → add SUPABASE_KEY (service role key)
- * 3. Run testRun() once → click Allow on OAuth popup (grants Gmail + fetch permission)
- * 4. Triggers (clock icon) → Add Trigger:
- *    - Function: runDailyOutreach
- *    - Event source: Time-driven
- *    - Type: Week timer
- *    - Day: Tue (then add separate triggers for Wed and Thu)
- *    - Time: 10am-11am
- * 5. Done. Forever.
+ * Schedule: Tue/Wed/Thu 10:00 AM ET
+ * Built: May 20, 2026 by Claude | Hardened May 21, 2026
  */
 
 // ============ CONFIG ============
 const SUPABASE_URL = 'https://pebhikfbpgntedvbxqph.supabase.co';
-const BATCH_SIZE = 7;
+const BATCH_LIMIT = 25;          // GOVERNOR: max emails per run (Google quota safety)
+const BATCH_SIZE = 7;            // Target drafts per scheduled run
 const SENDER_NAME = 'Trevor Vaughan';
 const SENDER_EMAIL = 'trevorvaughan@hudsonseed.com';
+const IS_DRY_RUN = true;         // SANDBOX FLAG: true = log only, false = create real drafts
+                                 // ⚠️ Flip to false ONLY when ready for production sends
 
-// SUPABASE_KEY is stored in Script Properties (Project Settings → Script Properties)
+// ============ CREDENTIAL MGMT ============
 function getSupabaseKey() {
   const key = PropertiesService.getScriptProperties().getProperty('SUPABASE_KEY');
   if (!key) {
@@ -63,10 +59,27 @@ function supabaseRequest(method, path, payload) {
   return text ? JSON.parse(text) : null;
 }
 
+// ============ KILL SWITCH ============
+function isAutonomousMode() {
+  try {
+    const resp = supabaseRequest('GET', 'system_config?key=eq.autonomous_mode&select=value');
+    if (resp && resp.length > 0) {
+      return resp[0].value === 'ON';
+    }
+  } catch (e) {
+    Logger.log('Could not check autonomous_mode, defaulting ON: ' + e.toString());
+  }
+  return true;
+}
+
+// ============ QUERIES (with strict dedup) ============
 function getPendingSchools(limit) {
+  // GUARDRAIL #1: Strict dedup — only pull schools where draft_status='pending'
+  // AND principal_email exists. Skip anything already 'drafted' or 'failed'.
   const path = 'jc_schools_contacts'
     + '?draft_status=eq.pending'
     + '&principal_email=not.is.null'
+    + '&principal_email=neq.'
     + '&order=id.asc'
     + '&limit=' + limit;
   return supabaseRequest('GET', path);
@@ -81,15 +94,48 @@ function markSchoolDrafted(schoolId, gmailDraftId) {
   });
 }
 
-function logRun(targeted, created, errors, errorDetail, processed) {
+function markSchoolFailed(schoolId, errorReason) {
+  // GUARDRAIL #3: Row-level failure tracking — never crash the run
+  const path = 'jc_schools_contacts?id=eq.' + schoolId;
+  try {
+    return supabaseRequest('PATCH', path, {
+      draft_status: 'failed',
+      draft_error: errorReason.substring(0, 500),
+      draft_failed_at: new Date().toISOString()
+    });
+  } catch (e) {
+    Logger.log('Could not mark school ' + schoolId + ' as failed: ' + e.toString());
+  }
+}
+
+function logRun(targeted, created, failed, errorDetail, processed) {
   return supabaseRequest('POST', 'outreach_runs', {
     run_date: new Date().toISOString().slice(0, 10),
     schools_targeted: targeted,
     drafts_created: created,
-    errors: errors,
+    errors: failed,
     error_detail: errorDetail,
-    schools_processed: processed
+    schools_processed: processed,
+    dry_run: IS_DRY_RUN
   });
+}
+
+// ============ DATA VALIDATION ============
+function validateSchool(school) {
+  // GUARDRAIL #3 (validation layer): catch corrupted rows before we burn Gmail quota
+  const errors = [];
+  if (!school.school_name || school.school_name.trim() === '') {
+    errors.push('Missing school_name');
+  }
+  if (!school.principal_email || school.principal_email.trim() === '') {
+    errors.push('Missing principal_email');
+  } else {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(school.principal_email.trim())) {
+      errors.push('Invalid principal_email format: ' + school.principal_email);
+    }
+  }
+  return errors;
 }
 
 // ============ EMAIL BUILDERS ============
@@ -118,7 +164,7 @@ function buildBody(school) {
   const schoolName = school.school_name;
   const grade = school.grade_level || 'K-12';
   const enrollment = school.enrollment;
-  
+
   let enrollmentClause = '';
   if (enrollment && enrollment > 800) {
     enrollmentClause = ' With over ' + enrollment + ' students across ' + grade + ', we believe a measured rollout could meaningfully support your teachers and students.';
@@ -140,7 +186,15 @@ function buildBody(school) {
 function createGmailDraft(school) {
   const subject = buildSubject(school);
   const body = buildBody(school);
-  
+
+  // GUARDRAIL #5: Dry run sandbox
+  if (IS_DRY_RUN) {
+    Logger.log('🧪 DRY RUN — would draft to: ' + school.principal_email);
+    Logger.log('   Subject: ' + subject);
+    Logger.log('   Body preview: ' + body.substring(0, 120) + '...');
+    return 'DRY_RUN_' + school.id + '_' + Date.now();
+  }
+
   const draft = GmailApp.createDraft(
     school.principal_email,
     subject,
@@ -153,75 +207,188 @@ function createGmailDraft(school) {
   return draft.getId();
 }
 
-// ============ MAIN ENTRY POINTS ============
-
-/**
- * MAIN PRODUCTION FUNCTION — called by Time Trigger
- * Pulls BATCH_SIZE pending schools, drafts each, logs.
- */
+// ============ MAIN ENTRY POINT ============
 function runDailyOutreach() {
-  Logger.log('[' + new Date().toISOString() + '] runDailyOutreach starting');
-  
-  const schools = getPendingSchools(BATCH_SIZE);
+  const runStart = new Date().toISOString();
+  Logger.log('========================================');
+  Logger.log('[' + runStart + '] runDailyOutreach starting');
+  Logger.log('DRY_RUN mode: ' + IS_DRY_RUN);
+  Logger.log('BATCH_LIMIT: ' + BATCH_LIMIT + ', BATCH_SIZE: ' + BATCH_SIZE);
+  Logger.log('========================================');
+
+  // KILL SWITCH check
+  if (!isAutonomousMode()) {
+    Logger.log('⏸️ Autonomous mode is OFF in system_config. Skipping run.');
+    return 'Skipped: autonomous_mode=OFF';
+  }
+
+  // GUARDRAIL #2: Enforce governor — never exceed BATCH_LIMIT regardless of config
+  const targetSize = Math.min(BATCH_SIZE, BATCH_LIMIT);
+
+  let schools;
+  try {
+    schools = getPendingSchools(targetSize);
+  } catch (e) {
+    Logger.log('❌ FATAL: Could not query Supabase: ' + e.toString());
+    try {
+      logRun(0, 0, 1, 'Supabase query failed: ' + e.toString(), []);
+    } catch (logErr) {
+      Logger.log('Also could not log the failure: ' + logErr.toString());
+    }
+    return 'FATAL: ' + e.toString();
+  }
+
   Logger.log('Found ' + schools.length + ' pending schools');
-  
+
   if (schools.length === 0) {
     logRun(0, 0, 0, 'No pending schools', []);
-    Logger.log('No pending schools. Outreach complete.');
+    Logger.log('✅ No pending schools. Outreach complete.');
     return 'No pending schools';
   }
-  
+
   let created = 0;
-  let errors = 0;
+  let failed = 0;
   const errorMessages = [];
   const processed = [];
-  
+
+  // GUARDRAIL #3: Per-row try/catch, never crash whole run
   for (let i = 0; i < schools.length; i++) {
     const school = schools[i];
+
+    // Validate first
+    const validationErrors = validateSchool(school);
+    if (validationErrors.length > 0) {
+      const reason = 'Validation failed: ' + validationErrors.join(', ');
+      Logger.log('  ⚠️ SKIP: ' + (school.school_name || 'unknown') + ' — ' + reason);
+      markSchoolFailed(school.id, reason);
+      failed++;
+      errorMessages.push((school.school_name || 'id:' + school.id) + ': ' + reason);
+      processed.push({
+        school_id: school.id,
+        school_name: school.school_name,
+        status: 'failed',
+        error: reason
+      });
+      continue;
+    }
+
+    // Try to draft
     try {
       const draftId = createGmailDraft(school);
-      markSchoolDrafted(school.id, draftId);
+      if (!IS_DRY_RUN) {
+        markSchoolDrafted(school.id, draftId);
+      }
       created++;
       processed.push({
         school_id: school.id,
         school_name: school.school_name,
         principal_email: school.principal_email,
         draft_id: draftId,
-        status: 'success'
+        status: IS_DRY_RUN ? 'dry_run_success' : 'success'
       });
       Logger.log('  ✓ Drafted: ' + school.school_name);
     } catch (e) {
-      errors++;
-      errorMessages.push(school.school_name + ': ' + e.toString());
+      failed++;
+      const errMsg = e.toString();
+      errorMessages.push(school.school_name + ': ' + errMsg);
+      markSchoolFailed(school.id, errMsg);
       processed.push({
         school_id: school.id,
         school_name: school.school_name,
         status: 'error',
-        error: e.toString()
+        error: errMsg
       });
-      Logger.log('  ✗ ERROR: ' + school.school_name + ' - ' + e.toString());
+      Logger.log('  ✗ ERROR: ' + school.school_name + ' — ' + errMsg);
     }
   }
-  
-  logRun(
-    schools.length,
-    created,
-    errors,
-    errorMessages.length > 0 ? errorMessages.join('; ') : null,
-    processed
-  );
-  
-  const summary = 'Drafted ' + created + ' emails, ' + errors + ' errors';
+
+  try {
+    logRun(
+      schools.length,
+      created,
+      failed,
+      errorMessages.length > 0 ? errorMessages.join(' | ') : null,
+      processed
+    );
+  } catch (e) {
+    Logger.log('Could not write outreach_runs log: ' + e.toString());
+  }
+
+  const summary = 'Drafted ' + created + ' (' + (IS_DRY_RUN ? 'DRY RUN' : 'LIVE') + '), ' + failed + ' failed';
+  Logger.log('========================================');
   Logger.log('[DONE] ' + summary);
+  Logger.log('========================================');
   return summary;
 }
 
+// ============ GUARDRAIL #4: AUTO TRIGGER INSTALLER ============
 /**
- * TEST FUNCTION — run this FIRST to trigger OAuth authorization.
- * Just queries Supabase, doesn't create any drafts.
+ * Run this ONCE manually to programmatically install all three time triggers
+ * (Tue/Wed/Thu 10 AM ET). No clicking through Google's UI required.
  */
+function setupDailyTrigger() {
+  // First, clean up any existing triggers for runDailyOutreach to prevent doubles
+  const existing = ScriptApp.getProjectTriggers();
+  let removed = 0;
+  for (let i = 0; i < existing.length; i++) {
+    if (existing[i].getHandlerFunction() === 'runDailyOutreach') {
+      ScriptApp.deleteTrigger(existing[i]);
+      removed++;
+    }
+  }
+  Logger.log('Removed ' + removed + ' existing runDailyOutreach triggers');
+
+  // Install fresh triggers: Tue, Wed, Thu at 10 AM
+  const days = [
+    ScriptApp.WeekDay.TUESDAY,
+    ScriptApp.WeekDay.WEDNESDAY,
+    ScriptApp.WeekDay.THURSDAY
+  ];
+
+  for (let i = 0; i < days.length; i++) {
+    ScriptApp.newTrigger('runDailyOutreach')
+      .timeBased()
+      .onWeekDay(days[i])
+      .atHour(10)
+      .inTimezone('America/New_York')
+      .create();
+    Logger.log('✓ Installed trigger for ' + days[i] + ' 10 AM ET');
+  }
+
+  Logger.log('✅ All 3 weekly triggers installed (Tue/Wed/Thu 10 AM ET)');
+  return 'Triggers installed: Tue, Wed, Thu at 10 AM ET';
+}
+
+/**
+ * View all currently installed triggers (debugging helper).
+ */
+function listTriggers() {
+  const triggers = ScriptApp.getProjectTriggers();
+  Logger.log('Found ' + triggers.length + ' triggers:');
+  for (let i = 0; i < triggers.length; i++) {
+    const t = triggers[i];
+    Logger.log('  - ' + t.getHandlerFunction() + ' [' + t.getEventType() + ']');
+  }
+  return triggers.length;
+}
+
+/**
+ * Emergency: delete ALL triggers in this project.
+ */
+function deleteAllTriggers() {
+  const triggers = ScriptApp.getProjectTriggers();
+  for (let i = 0; i < triggers.length; i++) {
+    ScriptApp.deleteTrigger(triggers[i]);
+  }
+  Logger.log('Deleted ' + triggers.length + ' triggers');
+  return 'Deleted ' + triggers.length + ' triggers';
+}
+
+// ============ DIAGNOSTIC FUNCTIONS ============
 function testRun() {
   Logger.log('Test run: checking Supabase connection...');
+  Logger.log('IS_DRY_RUN: ' + IS_DRY_RUN);
+  Logger.log('Autonomous mode: ' + isAutonomousMode());
   const schools = getPendingSchools(1);
   Logger.log('Connection OK. Found ' + schools.length + ' pending schools.');
   if (schools.length > 0) {
@@ -230,23 +397,6 @@ function testRun() {
   return 'Test passed. ' + schools.length + ' pending schools found.';
 }
 
-/**
- * DRY RUN — preview what would be drafted without actually drafting.
- */
-function dryRun() {
-  const schools = getPendingSchools(BATCH_SIZE);
-  Logger.log('Would draft ' + schools.length + ' emails:');
-  for (let i = 0; i < schools.length; i++) {
-    const s = schools[i];
-    Logger.log('  → ' + s.school_name + ' (' + s.principal_email + ')');
-    Logger.log('     Subject: ' + buildSubject(s));
-  }
-  return 'Dry run complete. ' + schools.length + ' schools queued.';
-}
-
-/**
- * STATUS CHECK — see current outreach pipeline state.
- */
 function pipelineStatus() {
   const all = supabaseRequest('GET', 'jc_schools_contacts?select=draft_status');
   const counts = {};
