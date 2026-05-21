@@ -221,3 +221,8 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
+
+# ============ FREE TIER SAFEGUARD ============
+# This script exits immediately after one batch.
+# Do NOT loop. Do NOT wait. Do NOT poll.
+# Railway cron will re-invoke us on schedule.
