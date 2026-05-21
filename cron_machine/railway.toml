@@ -1,0 +1,12 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "python daily_outreach.py"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 2
+
+# Cron schedule: 10am ET = 14:00 UTC, Tue/Wed/Thu
+# Railway uses standard cron syntax
+[deploy.cronSchedule]
+schedule = "0 14 * * 2,3,4"
