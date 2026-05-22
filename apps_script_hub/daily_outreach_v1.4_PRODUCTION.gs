@@ -17,7 +17,7 @@ const SENDER_NAME = 'Trevor Vaughan';
 
 // Safety limits
 const BATCH_LIMIT = 7;
-const IS_DRY_RUN = true;   // ← Change to false when you want real drafts
+const IS_DRY_RUN = false;   // ← Change to false when you want real drafts
 
 // ============================================================================
 // MAIN EXECUTION
