@@ -9,7 +9,8 @@ It is duplicated here from the dedicated LVL2GB repo for convenience. See the fu
 - Zero pressure. Ever. Desperation is the worst cologne.
 - B2B only (schools and districts). No consumer, no ads, no tracking pixels.
 - Value-first, long-cycle nurturing (6–18 months).
-- The machine must be **antifragile**: a simple but working Layer 1 that can still deliver ~85% value is better than a complex system that crashes and delivers 0%.
+- **The machine must be antifragile**: A simple but working Layer 1 that can still deliver ~85% value is better than a complex system that crashes and delivers 0%.
+- **Most important rule**: Layer 1 must continue to function even if Layer 2 (response handling, the sheet logic, the connector, the sync, etc.) has a break or is completely unavailable. Layer 1 independence is non-negotiable.
 - Google Sheets is the primary human operating layer (phone-friendly, visible, trustworthy).
 - Pre-staging of campaign data (sheets or CSVs created days ahead) is a first-class feature.
 - We are Google — we should be all sheets where it makes sense for the human experience.
