@@ -230,15 +230,17 @@ function sendMaterialsEmail_(email, name, title, school, meetLink) {
   const greetName = name || 'there';
   const subject = 'Re: Vendor Code 9615 / K-12 Mindfulness Programming' + (school ? ' — ' + school : '');
   const meetLine = meetLink
-    ? ('Here is our Google Meet link for the intro: ' + meetLink)
-    : 'Just reply with the time that works best and I will send a Google Calendar invite with the Meet link attached.';
+    ? ('If a short call would help, here is a Google Meet link whenever it suits you: ' + meetLink)
+    : 'Would it be unreasonable to grab 15 minutes so I can answer your questions directly? If so, just tell me the time that is least disruptive and I will send a calendar invite with everything attached \u2014 no prep needed on your end.';
 
   const body =
     'Hi ' + greetName + ',\n\n' +
-    'Thank you for getting back to me. Here is a quick overview of our K-12 yoga and mindfulness programming:\n\n' +
+    'I know the last thing a school day needs is one more thing to manage. So I will keep this simple.\n\n' +
+    'HudsonSeed is a 100% asynchronous mindfulness and movement tool \u2014 a teacher just presses play on the whiteboard and the coach guides the room for a couple of minutes. No prep, no scheduling, no specialist. Built to save teacher sanity, not take more of their time.\n\n' +
+    'Here is a 60-second look at how it works:\n' +
     DECK_URL + '\n\n' +
     meetLine + '\n\n' +
-    'Looking forward to connecting.\n\n' +
+    'And if now is not the right time for your building, just say so \u2014 no hard feelings, and I will check back down the road.\n\n' +
     'Best,\nTrevor Vaughan\nFounder, HudsonSeed\ntrevorvaughan@hudsonseed.com';
 
   const opts = { name: 'Trevor Vaughan' };
