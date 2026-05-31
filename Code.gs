@@ -228,19 +228,20 @@ function sendMaterials_(ignoreDelay) {
 /** Builds + sends the Layer 3 email. Replies in-thread when possible. */
 function sendMaterialsEmail_(email, name, title, school, meetLink) {
   const greetName = name || 'there';
-  const subject = 'Re: Vendor Code 9615 / K-12 Mindfulness Programming' + (school ? ' — ' + school : '');
+  const subject = 'Re: Vendor Code 9615 / K-12 Mindfulness Programming' + (school ? ': ' + school : '');
   const meetLine = meetLink
     ? ('If a short call would help, here is a Google Meet link whenever it suits you: ' + meetLink)
-    : 'Would it be unreasonable to grab 15 minutes so I can answer your questions directly? If so, just tell me the time that is least disruptive and I will send a calendar invite with everything attached \u2014 no prep needed on your end.';
+    : 'Would it be unreasonable to grab 15 minutes so I can answer your questions directly? If so, just tell me the time that is least disruptive and I will send a calendar invite with everything attached, and there is no prep needed on your end.';
 
   const body =
     'Hi ' + greetName + ',\n\n' +
     'I know the last thing a school day needs is one more thing to manage. So I will keep this simple.\n\n' +
-    'HudsonSeed is a 100% asynchronous mindfulness and movement tool \u2014 a teacher just presses play on the whiteboard and the coach guides the room for a couple of minutes. No prep, no scheduling, no specialist. Built to save teacher sanity, not take more of their time.\n\n' +
+    'HudsonSeed is a 100% asynchronous mindfulness and movement tool. A teacher just presses play on the whiteboard and the coach guides the room for a couple of minutes. No prep, no scheduling, no specialist. Built to save teacher sanity, not take more of their time.\n\n' +
+    'We are an approved JCPS vendor (Code 9615), already in 7,000 teachers\u2019 rooms and 100,000+ kids\u2019 classrooms.\n\n' +
     'Here is a 60-second look at how it works:\n' +
     DECK_URL + '\n\n' +
     meetLine + '\n\n' +
-    'And if now is not the right time for your building, just say so \u2014 no hard feelings, and I will check back down the road.\n\n' +
+    'And if now is not the right time for your building, just say so. No hard feelings, and I will check back down the road.\n\n' +
     'Best,\nTrevor Vaughan\nFounder, HudsonSeed\ntrevorvaughan@hudsonseed.com';
 
   const opts = { name: 'Trevor Vaughan' };
