@@ -15,7 +15,7 @@
 
 // ================== CONFIG ==================
 
-const DECK_URL = 'https://docs.google.com/presentation/d/1mjLSqT47dSmLENRIRx9bSPsFbXVNWpcd2a-5WeGeU8o/edit';
+const DECK_URL = 'https://github.com/trevorvaughan-ux/hudsonseed-pitching-machine/blob/main/HudsonSeed_Asynchronous.pdf';
 const CAMPAIGN_ALIAS = '';          // set to the campaign alias email once it exists; '' = send from primary
 const REPLY_DELAY_MINUTES = 5;      // Layer 3 waits this long after a reply before sending materials
 const REPLY_LOOKBACK_DAYS = 14;     // how far back to scan the inbox for replies
