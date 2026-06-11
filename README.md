@@ -1,5 +1,8 @@
 # HudsonSeed Pitching Machine
 
+> **WAKE-UP POINTER: Read [CLAUDE_STATUS_2026-06-10.md](CLAUDE_STATUS_2026-06-10.md) first.** Dated status files are the source of truth for session state.
+
+
 **Autonomous email outreach engine for K-12 school sales.**
 
 ## Status
