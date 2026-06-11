@@ -6,6 +6,7 @@ NO SECRETS IN THIS FILE. Credentials come from Trevor's vault upload.
 Beta = machine writes DRAFTS ONLY, Trevor reviews + sends manually. 22 clean drafts staged. Email auth all green. Deck v2 live in this repo. Next: send drip starting with Valerie Roper.
 
 ## ARCHITECTURE (LOCKED - do not relitigate)
+- ARCHIVE RULE (locked 2026-06-10): Nothing is deleted, it is archived. Old/superseded files move to _archive/YYYY-MM-DD/ with a README tombstone explaining what each was. Exceptions: accidental junk (diagnostic artifacts) may be git rm-ed since git history preserves everything; Gmail items use Trash (30-day recovery).
 - Pitch Machine runtime = Google Apps Script + Google Sheets (source of truth) + Supabase (write-only pushes)
 - Railway = WEBSITE ONLY. Pitch Machine has zero Railway dependency.
 - Classification binary: COMMUNITY or NOT. No tiers.
