@@ -1,5 +1,15 @@
 # CLAUDE STATUS | 2026-06-10 (June 10, 2026) | READ THIS FIRST ON WAKE-UP
 
+## SESSION UPDATE 2026-06-11 (June 11) - FIRST DRIP DAY
+- 13 SENT: 3 morning (PS 14, 27, 28) + 10 afternoon incl. VALERIE ROPER (clean, CC Janeen) + PS 22, Campbell, Liberty, Infinity, Ferris, PS 37, PS 6, PS 33, Hudson School
+- 2 BOUNCES to chase: dalfordburke@jcboe.org (Ferris) and info@thehudsonschool.org (Hudson School) - both address-not-found, need correct addresses + redraft via Gmail UI
+- 9 NYC drafts repaired + API-verified clean (links + beta removed + real names): Bender, Chory, Rippe-Hofmann, Agostinelli, Najjar, Severin, Fong, Sestak, Esposito
+- BETA WORDING RULE (locked): no beta anywhere. New copy: JC = expanding across Jersey City, already in 7,000 teachers rooms and 100,000+ kids classrooms. Generic = already in 7,000 teachers rooms and 100,000+ kids classrooms.
+- Hudson School Head of School = Rebekah Sollitto (verified June 2026)
+- REPAIR METHOD THAT WORKS: Claude in Chrome drives Gmail UI, JS DOM surgery on compose (anchor replacement reliable, text-node swaps need 4s autosave wait), self-draining search queue (in:draft + dirty phrase), final API audit mandatory.
+- WARNING BEFORE NEXT MACHINE RUN: Layer 1 body template (in the master Google Sheet) still contains beta wording + the wrapped link. FIX THE TEMPLATE CELL before the next Tue/Wed/Thu 10am cron or the machine births dirty drafts again.
+
+
 NO SECRETS IN THIS FILE. Credentials come from Trevor's vault upload.
 
 ## ONE-LINE RESUME
