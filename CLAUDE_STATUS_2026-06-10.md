@@ -1,5 +1,9 @@
 # CLAUDE STATUS | 2026-06-10 (June 10, 2026) | READ THIS FIRST ON WAKE-UP
 
+## SESSION UPDATE 2026-06-12 (June 12) - NJ PRIVATES BATCH
+- 10 NJ private school drafts composed via Gmail UI (clean-at-birth path, ZERO repairs needed - first ever): Pingry/Lear, Newark Academy/Austin, MKA/Furlonge, Dwight-Englewood/Gregersen, Delbarton/Fr. Michael (email corrected from corrupted Grok data, verified michael@delbarton.org), Lawrenceville/Murray, Morristown-Beard/Morrison, Saddle River Day/Desai, Kent Place/Galambos, Hun/Brougham. All API-verified. Deans column from Grok research = wave 2, banked.
+- Pipeline proven: Grok researches -> Claude verifies (caught corrupted Delbarton email) -> Claude composes via browser UI -> API audit. No vendor 9615 on privates, no beta, subject = Science of Calm standard.
+
 ## SESSION UPDATE 2026-06-11 (June 11) - FIRST DRIP DAY
 - 13 SENT: 3 morning (PS 14, 27, 28) + 10 afternoon incl. VALERIE ROPER (clean, CC Janeen) + PS 22, Campbell, Liberty, Infinity, Ferris, PS 37, PS 6, PS 33, Hudson School
 - 6 BOUNCES total, all filed under Gmail label RE-ATTACK | Bad Address (Label_4), archived out of inbox 2026-06-12. Re-attack targets needing REAL addresses: TSestak, SSeverin, RBender, DEsposito (all schools.nyc.gov, recipient unknown - guessed patterns failed), dalfordburke@jcboe.org (Ferris HS), info@thehudsonschool.org (Hudson School - general inbox dead, Head = Rebekah Sollitto). Redraft via Gmail UI when re-attacking. NYC delivered OK: Campbell, Chory, Rippe-Hofmann, Agostinelli, Najjar, Fong.
