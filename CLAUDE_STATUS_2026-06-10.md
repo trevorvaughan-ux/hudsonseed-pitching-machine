@@ -7,6 +7,7 @@
 - BETA WORDING RULE (locked): no beta anywhere. New copy: JC = expanding across Jersey City, already in 7,000 teachers rooms and 100,000+ kids classrooms. Generic = already in 7,000 teachers rooms and 100,000+ kids classrooms.
 - Hudson School Head of School = Rebekah Sollitto (verified June 2026)
 - REPAIR METHOD THAT WORKS: Claude in Chrome drives Gmail UI, JS DOM surgery on compose (anchor replacement reliable, text-node swaps need 4s autosave wait), self-draining search queue (in:draft + dirty phrase), final API audit mandatory.
+- STAGE 2 GATE (logged 2026-06-11, target ~October 2026): the draft-creation pipeline must produce clean links and clean copy WITHOUT manual fixes before auto-send is allowed. Until then: Trevor fixes template/links manually before each send window. This is a hard engineering requirement, not a chore.
 - WARNING BEFORE NEXT MACHINE RUN: Layer 1 body template (in the master Google Sheet) still contains beta wording + the wrapped link. FIX THE TEMPLATE CELL before the next Tue/Wed/Thu 10am cron or the machine births dirty drafts again.
 
 
