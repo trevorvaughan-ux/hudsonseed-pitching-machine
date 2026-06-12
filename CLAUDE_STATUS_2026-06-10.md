@@ -2,7 +2,7 @@
 
 ## SESSION UPDATE 2026-06-11 (June 11) - FIRST DRIP DAY
 - 13 SENT: 3 morning (PS 14, 27, 28) + 10 afternoon incl. VALERIE ROPER (clean, CC Janeen) + PS 22, Campbell, Liberty, Infinity, Ferris, PS 37, PS 6, PS 33, Hudson School
-- 2 BOUNCES to chase: dalfordburke@jcboe.org (Ferris) and info@thehudsonschool.org (Hudson School) - both address-not-found, need correct addresses + redraft via Gmail UI
+- 6 BOUNCES total, all filed under Gmail label RE-ATTACK | Bad Address (Label_4), archived out of inbox 2026-06-12. Re-attack targets needing REAL addresses: TSestak, SSeverin, RBender, DEsposito (all schools.nyc.gov, recipient unknown - guessed patterns failed), dalfordburke@jcboe.org (Ferris HS), info@thehudsonschool.org (Hudson School - general inbox dead, Head = Rebekah Sollitto). Redraft via Gmail UI when re-attacking. NYC delivered OK: Campbell, Chory, Rippe-Hofmann, Agostinelli, Najjar, Fong.
 - 9 NYC drafts repaired + API-verified clean (links + beta removed + real names): Bender, Chory, Rippe-Hofmann, Agostinelli, Najjar, Severin, Fong, Sestak, Esposito
 - BETA WORDING RULE (locked): no beta anywhere. New copy: JC = expanding across Jersey City, already in 7,000 teachers rooms and 100,000+ kids classrooms. Generic = already in 7,000 teachers rooms and 100,000+ kids classrooms.
 - Hudson School Head of School = Rebekah Sollitto (verified June 2026)
