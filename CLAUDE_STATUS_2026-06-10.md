@@ -1,5 +1,12 @@
 # CLAUDE STATUS | 2026-06-10 (June 10, 2026) | READ THIS FIRST ON WAKE-UP
 
+## SESSION UPDATE 2026-06-12 PM - HANUMAN PROJECT KICKOFF (NEW BIG PROJECT)
+STRATEGY (Trevor, locked): Months before classroom deployment. Hanuman launches on the HOMEPAGE first as lead-capture funnel: Q1 free -> Q2 requires email -> Q3-5 free -> then app signup OR teacher code. Vibrant Hanuman answers all yoga/mindfulness questions, GUARDRAILED by Trevor's training and resources.
+IP RULING (Trevor): the 9 x 95-hour modules in Drive were NEVER committed to YogaRenew programs - they are Trevor's own IP, cleared as Hanuman's knowledge corpus. Trevor = creator/partner of YogaRenew Children's YTT (his name/face on product page). First product to sell through teacher tool = 30hr TT (money flow details TBD).
+ENGINE DECISION: Gemini API free tier (aistudio.google.com) = $0 at launch volume. Build engine-agnostic brain. Chassis = small service on Railway next to website (NOT Apps Script - cold starts/quotas). Leads -> Supabase leads table (same CRM as Pitch Machine).
+NEXT TASKS: (1) Claude reads all 9 modules from Drive -> builds knowledge base + guardrailed system prompt (no medical/therapy/diagnosis, redirect off-topic to breath/movement) -> Trevor approves brain before live. (2) Trevor: free Gemini API key into vault, Hanuman personality 1-2 sentences, still owed: 2-min voice recording + character art decision.
+TOOLBELT CONCEPT (banked): hudsonseed.com/teachers - free 2-min resets organized by classroom need (TIYY format as inspiration ONLY, zero content copied) + 30hr TT as product + cue cards bridge.
+
 ## SESSION UPDATE 2026-06-12 (June 12) - NJ PRIVATES BATCH
 - 10 NJ private school drafts composed via Gmail UI (clean-at-birth path, ZERO repairs needed - first ever): Pingry/Lear, Newark Academy/Austin, MKA/Furlonge, Dwight-Englewood/Gregersen, Delbarton/Fr. Michael (email corrected from corrupted Grok data, verified michael@delbarton.org), Lawrenceville/Murray, Morristown-Beard/Morrison, Saddle River Day/Desai, Kent Place/Galambos, Hun/Brougham. All API-verified. Deans column from Grok research = wave 2, banked.
 - Pipeline proven: Grok researches -> Claude verifies (caught corrupted Delbarton email) -> Claude composes via browser UI -> API audit. No vendor 9615 on privates, no beta, subject = Science of Calm standard.
